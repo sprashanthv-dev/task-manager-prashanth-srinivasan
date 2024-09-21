@@ -1,0 +1,18 @@
+.header {
+  margin: 2rem 0 0.5rem 2rem;
+  padding: 1rem 0;
+  color: #112d4e;
+  border-bottom: 2px solid #3f72af;
+}
+
+.new-task-button {
+  outline: none;
+  border: none;
+  margin: 1rem 0 0 2rem;
+  padding: 0.5rem 0;
+  width: 10rem;
+  border-radius: 0.5rem;
+  background-color: #3f72af;
+  color: #fff;
+  cursor: pointer;
+}
