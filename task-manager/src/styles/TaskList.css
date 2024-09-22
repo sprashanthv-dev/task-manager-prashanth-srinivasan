@@ -1,0 +1,10 @@
+.task-list {
+  margin: 2rem 0 0 2rem;
+}
+
+.no-tasks {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  color: #112d4e;
+}
