@@ -1,6 +1,6 @@
 import { TaskModel } from "../models/TaskModel";
 
-import TaskItem from "./Task";
+import Task from "./Task";
 
 import "../styles/TaskList.css";
 
@@ -15,7 +15,7 @@ const TaskList = ({ tasks }: TaskList) => {
         <p className="no-tasks">No Tasks available! Go ahead and add one :)</p>
       )}
       {tasks.map((task) => (
-        <TaskItem key={task.id} {...task} />
+        <Task key={task.id} {...task} />
       ))}
     </ul>
   );
