@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Task } from "../models/Task";
+import { TaskModel } from "../models/TaskModel";
 
 export const getUUIDv4 = () => {
   return uuidv4();
 };
 
-export const getMockTaskData = (): Task[] => {
+export const getMockTaskData = (): TaskModel[] => {
   return [
     {
       id: getUUIDv4(),

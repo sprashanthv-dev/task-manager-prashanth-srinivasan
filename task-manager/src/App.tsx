@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Task } from "./models/Task";
+import { TaskModel } from "./models/TaskModel";
 import { getMockTaskData } from "./utils/utils";
 
 import TaskList from "./components/TaskList";
@@ -9,7 +9,7 @@ import "./App.css";
 
 function App() {
   const mockData = getMockTaskData();
-  const [tasks, setTasks] = useState<Task[]>(mockData);
+  const [tasks, setTasks] = useState<TaskModel[]>(mockData);
 
   return (
     <>
