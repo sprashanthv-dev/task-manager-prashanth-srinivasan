@@ -3,7 +3,12 @@ import { Tasks } from "../types/common";
 
 import "../styles/TaskList.css";
 
-const TaskList = ({ tasks, completionHandler, deleteHandler }: Tasks) => {
+const TaskList = ({
+  tasks,
+  completionHandler,
+  deleteHandler,
+  viewHandler,
+}: Tasks) => {
   return (
     <ul className="task-list">
       {tasks.length === 0 && (
@@ -13,6 +18,7 @@ const TaskList = ({ tasks, completionHandler, deleteHandler }: Tasks) => {
         <Task
           key={task.id}
           task={task}
+          viewHandler={viewHandler}
           completionHandler={completionHandler}
           deleteHandler={deleteHandler}
         />

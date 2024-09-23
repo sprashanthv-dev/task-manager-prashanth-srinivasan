@@ -2,6 +2,12 @@ import { v4 as uuidv4 } from "uuid";
 
 import { TaskModel } from "../models/TaskModel";
 
+export enum OPERATIONS {
+  VIEW = "View",
+  ADD = "Add",
+  EDIT = "Edit",
+}
+
 export const getUUIDv4 = () => {
   return uuidv4();
 };
