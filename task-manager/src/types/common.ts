@@ -7,10 +7,16 @@ type toggleTaskHandler = {
   ) => void;
 };
 
+type deleteTaskHandler = {
+  deleteHandler: (id: string) => void;
+};
+
 export type Tasks = {
   tasks: TaskModel[];
-} & toggleTaskHandler;
+} & toggleTaskHandler &
+  deleteTaskHandler;
 
 export type EachTask = {
   task: TaskModel;
-} & toggleTaskHandler;
+} & toggleTaskHandler &
+  deleteTaskHandler;

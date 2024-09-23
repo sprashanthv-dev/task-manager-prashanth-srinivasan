@@ -26,11 +26,23 @@ function App() {
     });
   }
 
+  function deleteTask(id: string) {
+    setTasks((currTasks: TaskModel[]) => {
+      return currTasks.filter((task) => {
+        return task.id !== id;
+      });
+    });
+  }
+
   return (
     <>
       <h2 className="header">Task Manager</h2>
       <button className="new-task-button">New Task</button>
-      <TaskList tasks={tasks} completionHandler={toggleTaskCompletion} />
+      <TaskList
+        tasks={tasks}
+        completionHandler={toggleTaskCompletion}
+        deleteHandler={deleteTask}
+      />
     </>
   );
 }

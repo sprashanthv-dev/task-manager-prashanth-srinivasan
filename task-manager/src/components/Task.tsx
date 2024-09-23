@@ -1,7 +1,7 @@
 import "../styles/Task.css";
 import { EachTask } from "../types/common.ts";
 
-const Task = ({ task, completionHandler }: EachTask) => {
+const Task = ({ task, completionHandler, deleteHandler }: EachTask) => {
   const { id, title, completed } = task;
 
   return (
@@ -18,7 +18,11 @@ const Task = ({ task, completionHandler }: EachTask) => {
         <div className="task-icons">
           <img src="/info.svg" alt="Info Icon" />
           <img src="/edit.svg" alt="Edit Icon" />
-          <img src="/trash.svg" alt="Delete Icon" />
+          <img
+            src="/trash.svg"
+            alt="Delete Icon"
+            onClick={() => deleteHandler(id)}
+          />
         </div>
       </li>
     </div>
