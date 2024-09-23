@@ -5,7 +5,7 @@ const Task = ({ task, completionHandler }: EachTask) => {
   const { id, title, completed } = task;
 
   return (
-    <div className="task-container">
+    <div className={`task-container ${completed ? "task-checked" : ""}`}>
       <li className="task">
         <label>
           <input
