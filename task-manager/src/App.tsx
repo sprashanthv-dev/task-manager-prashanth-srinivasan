@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import TaskList from "./components/TaskList";
+import TaskDetail from "./components/TaskDetail";
 
 import { TaskModel } from "./models/TaskModel";
 import { getMockTaskData } from "./utils/utils";
-
-import TaskList from "./components/TaskList";
 
 import "./App.css";
 
@@ -36,13 +38,23 @@ function App() {
 
   return (
     <>
-      <h2 className="header">Task Manager</h2>
-      <button className="new-task-button">New Task</button>
-      <TaskList
-        tasks={tasks}
-        completionHandler={toggleTaskCompletion}
-        deleteHandler={deleteTask}
-      />
+      <BrowserRouter>
+        <h2 className="header">Task Manager</h2>
+        <button className="new-task-button">New Task</button>
+        <Routes>
+          <Route path="/detail/:id" element={<TaskDetail />} />
+          <Route
+            path="/"
+            element={
+              <TaskList
+                tasks={tasks}
+                completionHandler={toggleTaskCompletion}
+                deleteHandler={deleteTask}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
