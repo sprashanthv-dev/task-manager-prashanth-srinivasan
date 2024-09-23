@@ -40,17 +40,19 @@ function App() {
     <>
       <BrowserRouter>
         <h2 className="header">Task Manager</h2>
-        <button className="new-task-button">New Task</button>
         <Routes>
           <Route path="/detail/:id" element={<TaskDetail />} />
           <Route
             path="/"
             element={
-              <TaskList
-                tasks={tasks}
-                completionHandler={toggleTaskCompletion}
-                deleteHandler={deleteTask}
-              />
+              <>
+                <button className="new-task-button">New Task</button>
+                <TaskList
+                  tasks={tasks}
+                  completionHandler={toggleTaskCompletion}
+                  deleteHandler={deleteTask}
+                />
+              </>
             }
           />
         </Routes>

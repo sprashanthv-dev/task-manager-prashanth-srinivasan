@@ -1,5 +1,8 @@
-import "../styles/Task.css";
+import { Link } from "react-router-dom";
+
 import { EachTask } from "../types/common.ts";
+
+import "../styles/Task.css";
 
 const Task = ({ task, completionHandler, deleteHandler }: EachTask) => {
   const { id, title, completed } = task;
@@ -16,7 +19,9 @@ const Task = ({ task, completionHandler, deleteHandler }: EachTask) => {
           <p>{title}</p>
         </label>
         <div className="task-icons">
-          <img src="/info.svg" alt="Info Icon" />
+          <Link to={`/detail/${id}`}>
+            <img src="/info.svg" alt="Info Icon" />
+          </Link>
           <img src="/edit.svg" alt="Edit Icon" />
           <img
             src="/trash.svg"
