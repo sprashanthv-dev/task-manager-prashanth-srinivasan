@@ -1,14 +1,5 @@
-import { TaskModel } from "../models/TaskModel";
-
 import "../styles/Task.css";
-
-type EachTask = {
-  task: TaskModel;
-  completionHandler: (
-    id: string,
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => void;
-};
+import { EachTask } from "../types/common.ts";
 
 const Task = ({ task, completionHandler }: EachTask) => {
   const { id, title, completed } = task;

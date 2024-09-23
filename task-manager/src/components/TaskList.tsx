@@ -1,18 +1,9 @@
-import { TaskModel } from "../models/TaskModel";
-
 import Task from "./Task";
+import { Tasks } from "../types/common";
 
 import "../styles/TaskList.css";
 
-type TaskList = {
-  tasks: TaskModel[];
-  completionHandler: (
-    id: string,
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => void;
-};
-
-const TaskList = ({ tasks, completionHandler }: TaskList) => {
+const TaskList = ({ tasks, completionHandler }: Tasks) => {
   return (
     <ul className="task-list">
       {tasks.length === 0 && (
