@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { EachTask } from "../types/common.ts";
 
 import "../styles/Task.css";
