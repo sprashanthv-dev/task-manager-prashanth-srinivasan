@@ -1,13 +1,18 @@
-import { TaskModel } from "../models/TaskModel";
-
 import "../styles/Task.css";
+import { EachTask } from "../types/common.ts";
 
-const Task = ({ id, title, completed }: TaskModel) => {
+const Task = ({ task, completionHandler }: EachTask) => {
+  const { id, title, completed } = task;
+
   return (
-    <div className="task-container">
+    <div className={`task-container ${completed ? "task-checked" : ""}`}>
       <li className="task">
         <label>
-          <input type="checkbox" checked={completed} />
+          <input
+            type="checkbox"
+            checked={completed}
+            onChange={(e) => completionHandler(id, e)}
+          />
           <p>{title}</p>
         </label>
         <div className="task-icons">
