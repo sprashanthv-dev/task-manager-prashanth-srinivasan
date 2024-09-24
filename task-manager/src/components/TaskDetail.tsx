@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+
+import "../styles/TaskDetail.css";
 
 import { get } from "../utils/storage";
 import { TASK_STATUS } from "../utils/utils";
 import { TaskModel } from "../models/TaskModel";
-import { useState } from "react";
 
 const TaskDetail = () => {
   const { id } = useParams();
@@ -23,17 +25,16 @@ const TaskDetail = () => {
           <p className="title">Viewing {taskDetail.title}</p>
           {taskDetail.description && (
             <div className="description">
-              <strong>Description: </strong>
               <p>{taskDetail?.description}</p>
             </div>
           )}
           <div className="status">
-            <strong>Status: </strong>
-            <p>
+            <label>Status: </label>
+            <span className={taskDetail.completed ? "complete" : "incomplete"}>
               {taskDetail.completed
                 ? TASK_STATUS.COMPLETED
                 : TASK_STATUS.INCOMPLETE}
-            </p>
+            </span>
           </div>
         </div>
       )}

@@ -1,0 +1,44 @@
+.task-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1rem 0 0.5rem 2rem;
+  padding: 1rem 0;
+}
+
+.task-detail-container {
+  .title {
+    font-size: 1.75rem;
+    color: #112d4e;
+  }
+
+  .description {
+    margin: 1rem 0 0.25rem 0;
+  }
+
+  .description p {
+    text-align: justify;
+    font-size: 1.25rem;
+  }
+
+  .status {
+    margin-top: 0.5rem;
+  }
+
+  .status label,
+  .status span {
+    font-size: 1.25rem;
+  }
+}
+
+.complete {
+  color: #0d7c66;
+  font-weight: 600;
+}
+
+.incomplete {
+  color: #d91656;
+  font-weight: 600;
+}
