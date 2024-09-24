@@ -43,7 +43,7 @@ function App() {
     const task = tasks.filter((task) => task.id === id);
 
     // TODO: Need to remove the object from local storage later ?
-    save(id, { operation: OPERATIONS.VIEW, content: task });
+    save(id, { operation: OPERATIONS.VIEW, content: task[0] });
 
     navigate(`/detail/${id}`);
   }

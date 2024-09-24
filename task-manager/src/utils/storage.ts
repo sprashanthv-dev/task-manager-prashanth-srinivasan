@@ -4,7 +4,7 @@ export const save = (key: string, item: StorageModel) => {
   localStorage.setItem(key, JSON.stringify(item));
 };
 
-export const get = (key: string) => {
+export const get = (key: string): StorageModel | null => {
   const item = localStorage.getItem(key);
 
   if (item !== null) {
