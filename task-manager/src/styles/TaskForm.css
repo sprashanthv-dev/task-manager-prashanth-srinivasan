@@ -1,0 +1,44 @@
+.task-form {
+  margin-top: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  margin-bottom: 0.5rem;
+  color: #112d4e;
+}
+
+.form-row input,
+.form-row textarea {
+  outline: none;
+  width: 25rem;
+  padding: 0.5rem 0;
+  border: 2px solid #3f72af;
+  border-radius: 0.3rem;
+}
+
+.task-form button {
+  outline: none;
+  border: none;
+  padding: 0.5rem 0;
+  width: 5rem;
+  border-radius: 0.5rem;
+  background-color: #3f72af;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-form button:disabled {
+  opacity: 0.5;
+}
+
+.task-form .error-msg {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: #d91656;
+}
