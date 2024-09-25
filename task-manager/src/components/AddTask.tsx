@@ -1,20 +1,28 @@
 import { createPortal } from "react-dom";
 
 import Modal from "./Modal";
+import TaskForm from "./TaskForm";
 
 type AddTaskProps = {
   close: () => void;
+  onSubmit: () => void;
 };
 
-const AddTask = ({ close }: AddTaskProps) => {
+const AddTask = ({ close, onSubmit }: AddTaskProps) => {
+  function handleFormSubmit() {
+    console.log("Form submission received -- Add Task Component");
+    onSubmit();
+  }
+
   return createPortal(
     <Modal
+      titleText="Add New Task"
       buttonText="Save"
-      onComplete={() => close()}
+      showSave={false}
       onCancel={() => close()}
       onClose={() => close()}
     >
-      <h1>Hello world</h1>
+      <TaskForm onSubmit={handleFormSubmit} />
     </Modal>,
     document.body,
   );

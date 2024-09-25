@@ -50,6 +50,10 @@ function App() {
     navigate(`/detail/${id}`);
   }
 
+  function addTask() {
+    console.log("Form submission received -- App Component");
+  }
+
   function closeAddTaskModal() {
     setWasNewTaskClicked(false);
   }
@@ -57,7 +61,9 @@ function App() {
   return (
     <>
       <h2 className="header">Task Manager</h2>
-      {wasNewTaskClicked && <AddTask close={closeAddTaskModal} />}
+      {wasNewTaskClicked && (
+        <AddTask close={closeAddTaskModal} onSubmit={addTask} />
+      )}
       <Routes>
         <Route path="/detail/:id" element={<TaskDetail />} />
         <Route

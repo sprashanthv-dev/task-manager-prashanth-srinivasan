@@ -24,8 +24,10 @@ export type EachTask = {
 
 export type ModalProps = {
   children: React.ReactNode;
+  titleText: string;
   buttonText: string;
-  onComplete: () => void;
+  showSave: boolean;
+  onComplete?: () => void;
   onCancel: () => void;
   onClose: () => void;
 };

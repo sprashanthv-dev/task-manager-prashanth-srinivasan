@@ -14,7 +14,7 @@
 .modal {
   background-color: #f9f7f7;
   border-radius: 0.5rem;
-  width: 30rem;
+  width: 50rem;
   padding: 2rem;
 }
 
@@ -42,7 +42,7 @@
 
 .modal-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   font-size: 2rem;
 }
 
