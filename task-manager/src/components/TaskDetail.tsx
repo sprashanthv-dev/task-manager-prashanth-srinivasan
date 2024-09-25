@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "../styles/TaskDetail.css";
 
@@ -38,6 +38,16 @@ const TaskDetail = () => {
           </div>
         </div>
       )}
+      {!taskDetail && (
+        <p className="view-task-error">
+          Failed to view task information :( Try again later!
+        </p>
+      )}
+      <div className="back-button-container">
+        <Link to={"/"}>
+          <button className="back-button">Go Back</button>
+        </Link>
+      </div>
     </>
   );
 };
