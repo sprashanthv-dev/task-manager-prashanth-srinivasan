@@ -3,15 +3,17 @@ import { createPortal } from "react-dom";
 import Modal from "./Modal";
 import TaskForm from "./TaskForm";
 
+import { TaskModel } from "../models/TaskModel";
+
 type AddTaskProps = {
   close: () => void;
-  onSubmit: () => void;
+  onSubmit: (task: TaskModel) => void;
 };
 
 const AddTask = ({ close, onSubmit }: AddTaskProps) => {
-  function handleFormSubmit() {
+  function handleFormSubmit(task: TaskModel) {
     console.log("Form submission received -- Add Task Component");
-    onSubmit();
+    onSubmit(task);
   }
 
   return createPortal(
@@ -22,7 +24,7 @@ const AddTask = ({ close, onSubmit }: AddTaskProps) => {
       onCancel={() => close()}
       onClose={() => close()}
     >
-      <TaskForm onSubmit={handleFormSubmit} />
+      <TaskForm onSubmit={(task) => handleFormSubmit(task)} />
     </Modal>,
     document.body,
   );

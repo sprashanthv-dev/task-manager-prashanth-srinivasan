@@ -50,8 +50,10 @@ function App() {
     navigate(`/detail/${id}`);
   }
 
-  function addTask() {
+  function addTask(task: TaskModel) {
     console.log("Form submission received -- App Component");
+    console.log(task);
+    closeAddTaskModal();
   }
 
   function closeAddTaskModal() {
