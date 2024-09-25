@@ -16,7 +16,10 @@
 
 .form-row input,
 .form-row textarea {
+  outline: none;
   width: 25rem;
+  border: 2px solid #3f72af;
+  border-radius: 0.3rem;
 }
 
 .task-form button {
