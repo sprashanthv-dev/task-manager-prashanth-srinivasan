@@ -1,0 +1,56 @@
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* z-index: 1000; */
+}
+
+.modal {
+  background-color: #f9f7f7;
+  border-radius: 0.5rem;
+  width: 30rem;
+  padding: 2rem;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  padding: 0.5rem 0;
+  width: 5rem;
+  border-radius: 0.5rem;
+  color: #f9f7f7;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background-color: #3f72af;
+}
+
+.btn-cancel {
+  background-color: #d91656;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2rem;
+}
+
+.modal-content {
+  margin-bottom: 2rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}

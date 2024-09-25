@@ -21,3 +21,11 @@ export type EachTask = {
   task: TaskModel;
 } & toggleTaskHandler &
   operationsHandler;
+
+export type ModalProps = {
+  children: React.ReactNode;
+  buttonText: string;
+  onComplete: () => void;
+  onCancel: () => void;
+  onClose: () => void;
+};
