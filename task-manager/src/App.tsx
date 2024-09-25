@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import TaskList from "./components/TaskList";
 import TaskDetail from "./components/TaskDetail";
 
 import { TaskModel } from "./models/TaskModel";
-import { OPERATIONS } from "./utils/utils";
-import { save } from "./utils/storage";
+import { OPERATIONS, STORAGE_KEY } from "./utils/utils";
+import { get, save } from "./utils/storage";
 
 import "./App.css";
 import AddTask from "./components/AddTask";
@@ -14,8 +14,22 @@ import AddTask from "./components/AddTask";
 function App() {
   const navigate = useNavigate();
 
-  const [tasks, setTasks] = useState<TaskModel[]>([]);
+  // Load tasks initially from local storage if available
+  const [tasks, setTasks] = useState<TaskModel[]>(() => {
+    const storedTasks = get(STORAGE_KEY);
+
+    if (storedTasks === null) return [];
+
+    return storedTasks.content as TaskModel[];
+  });
+
   const [wasNewTaskClicked, setWasNewTaskClicked] = useState(false);
+
+  // Run the effect whenever a task is added, edited,
+  // deleted or toggled completion status
+  useEffect(() => {
+    save(STORAGE_KEY, { operation: OPERATIONS.STORE, content: tasks });
+  }, [tasks]);
 
   function toggleTaskCompletion(
     id: string,
@@ -43,7 +57,6 @@ function App() {
   function getTaskDetail(id: string) {
     const task = tasks.filter((task) => task.id === id);
 
-    // TODO: Need to remove the object from local storage later ?
     save(id, { operation: OPERATIONS.VIEW, content: task[0] });
 
     navigate(`/detail/${id}`);
@@ -51,12 +64,7 @@ function App() {
 
   function addTask(task: TaskModel) {
     setTasks((currTasks: TaskModel[]) => {
-      return [
-        {
-          ...currTasks,
-          ...task,
-        },
-      ];
+      return [...currTasks, { ...task }];
     });
 
     closeAddTaskModal();
