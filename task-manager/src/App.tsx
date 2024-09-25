@@ -1,23 +1,22 @@
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import TaskList from "./components/TaskList";
 import TaskDetail from "./components/TaskDetail";
-import Modal from "./components/Modal";
 
 import { TaskModel } from "./models/TaskModel";
 import { getMockTaskData, OPERATIONS } from "./utils/utils";
 import { save } from "./utils/storage";
 
 import "./App.css";
+import AddTask from "./components/AddTask";
 
 function App() {
   const mockData = getMockTaskData();
   const navigate = useNavigate();
 
   const [tasks, setTasks] = useState<TaskModel[]>(mockData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wasNewTaskClicked, setWasNewTaskClicked] = useState(false);
 
   function toggleTaskCompletion(
     id: string,
@@ -51,25 +50,14 @@ function App() {
     navigate(`/detail/${id}`);
   }
 
-  function closeModal() {
-    setIsModalOpen(false);
+  function closeAddTaskModal() {
+    setWasNewTaskClicked(false);
   }
 
   return (
     <>
       <h2 className="header">Task Manager</h2>
-      {isModalOpen &&
-        createPortal(
-          <Modal
-            buttonText="Save"
-            onComplete={closeModal}
-            onCancel={closeModal}
-            onClose={closeModal}
-          >
-            <h1>Hello world</h1>
-          </Modal>,
-          document.body,
-        )}
+      {wasNewTaskClicked && <AddTask close={closeAddTaskModal} />}
       <Routes>
         <Route path="/detail/:id" element={<TaskDetail />} />
         <Route
@@ -78,7 +66,7 @@ function App() {
             <>
               <button
                 className="new-task-button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setWasNewTaskClicked(true)}
               >
                 New Task
               </button>
