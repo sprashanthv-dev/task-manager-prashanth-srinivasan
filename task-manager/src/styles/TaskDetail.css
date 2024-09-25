@@ -1,0 +1,66 @@
+.task-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 1rem 0 0 2rem;
+  padding: 1rem 0;
+}
+
+.task-detail-container {
+  .title {
+    font-size: 1.75rem;
+    color: #112d4e;
+  }
+
+  .description {
+    margin: 1rem 0 0.25rem 0;
+  }
+
+  .description p {
+    text-align: justify;
+    font-size: 1.25rem;
+  }
+
+  .status {
+    margin-top: 0.5rem;
+  }
+
+  .status label,
+  .status span {
+    font-size: 1.25rem;
+  }
+}
+
+.complete {
+  color: #0d7c66;
+  font-weight: 600;
+}
+
+.incomplete {
+  color: #d91656;
+  font-weight: 600;
+}
+.view-task-error {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
+  text-align: center;
+  color: #112d4e;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: right;
+}
+.back-button-container button {
+  outline: none;
+  border: none;
+  padding: 0.5rem 0;
+  width: 10rem;
+  border-radius: 0.5rem;
+  background-color: #3f72af;
+  color: #fff;
+  cursor: pointer;
+}

@@ -1,7 +1,13 @@
-import "../styles/Task.css";
 import { EachTask } from "../types/common.ts";
 
-const Task = ({ task, completionHandler, deleteHandler }: EachTask) => {
+import "../styles/Task.css";
+
+const Task = ({
+  task,
+  completionHandler,
+  deleteHandler,
+  viewHandler,
+}: EachTask) => {
   const { id, title, completed } = task;
 
   return (
@@ -16,7 +22,11 @@ const Task = ({ task, completionHandler, deleteHandler }: EachTask) => {
           <p>{title}</p>
         </label>
         <div className="task-icons">
-          <img src="/info.svg" alt="Info Icon" />
+          <img
+            src="/info.svg"
+            alt="Info Icon"
+            onClick={() => viewHandler(id)}
+          />
           <img src="/edit.svg" alt="Edit Icon" />
           <img
             src="/trash.svg"
