@@ -7,6 +7,7 @@ const TaskList = ({
   tasks,
   completionHandler,
   deleteHandler,
+  editHandler,
   viewHandler,
 }: Tasks) => {
   return (
@@ -19,6 +20,7 @@ const TaskList = ({
           key={task.id}
           task={task}
           viewHandler={viewHandler}
+          editHandler={editHandler}
           completionHandler={completionHandler}
           deleteHandler={deleteHandler}
         />

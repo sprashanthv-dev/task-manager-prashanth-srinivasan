@@ -70,6 +70,11 @@ function App() {
     closeAddTaskModal();
   }
 
+  function handleEditTask(id: string) {
+    // TODO: Set state to update the task
+    console.log("Task about to be edited is :" + id);
+  }
+
   function closeAddTaskModal() {
     setWasNewTaskClicked(false);
   }
@@ -96,6 +101,7 @@ function App() {
                 tasks={tasks}
                 completionHandler={toggleTaskCompletion}
                 viewHandler={getTaskDetail}
+                editHandler={handleEditTask}
                 deleteHandler={deleteTask}
               />
             </>

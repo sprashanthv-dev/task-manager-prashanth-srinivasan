@@ -6,6 +6,7 @@ const Task = ({
   task,
   completionHandler,
   deleteHandler,
+  editHandler,
   viewHandler,
 }: EachTask) => {
   const { id, title, completed } = task;
@@ -27,7 +28,11 @@ const Task = ({
             alt="Info Icon"
             onClick={() => viewHandler(id)}
           />
-          <img src="/edit.svg" alt="Edit Icon" />
+          <img
+            src="/edit.svg"
+            alt="Edit Icon"
+            onClick={() => editHandler(id)}
+          />
           <img
             src="/trash.svg"
             alt="Delete Icon"

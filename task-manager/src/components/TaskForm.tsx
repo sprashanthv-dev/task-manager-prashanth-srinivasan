@@ -1,13 +1,10 @@
 import { useState } from "react";
 
+import { TaskFormProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
 import { getUUIDv4 } from "../utils/utils";
 
 import "../styles/TaskForm.css";
-
-type TaskFormProps = {
-  onSubmit: (task: TaskModel) => void;
-};
 
 const isFormValid = (title: string, description: string) => {
   const formattedTitle = title.trim();
