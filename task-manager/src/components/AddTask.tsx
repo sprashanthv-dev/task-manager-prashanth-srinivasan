@@ -21,7 +21,6 @@ const AddTask = ({ close, onSubmit }: AddTaskProps) => {
       titleText="Add New Task"
       buttonText="Save"
       showSave={false}
-      onCancel={() => close()}
       onClose={() => close()}
     >
       <TaskForm onSubmit={(task) => handleFormSubmit(task)} />

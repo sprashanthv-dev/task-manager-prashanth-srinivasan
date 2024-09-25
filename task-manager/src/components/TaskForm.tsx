@@ -3,8 +3,25 @@ import { useState } from "react";
 import { TaskModel } from "../models/TaskModel";
 import { getUUIDv4 } from "../utils/utils";
 
+import "../styles/TaskForm.css";
+
 type TaskFormProps = {
   onSubmit: (task: TaskModel) => void;
+};
+
+const isFormValid = (title: string, description: string) => {
+  const formattedTitle = title.trim();
+  const formattedDescription = description.trim();
+
+  const isDescriptionPresent = formattedDescription.length > 0;
+
+  if (formattedTitle.length === 0 || formattedTitle.length > 30) return false;
+
+  return isDescriptionPresent
+    ? formattedDescription.length < 500
+      ? true
+      : false
+    : true;
 };
 
 // The onSubmit prop is passed from the parent component
@@ -14,9 +31,6 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
-    //TODO: Validate form fields
-    //TODO: Show error messages when form fields are invalid
 
     const task: TaskModel = {
       id: getUUIDv4(),
@@ -39,12 +53,18 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
       <div className="form-row">
         <label htmlFor="title">Title</label>
         <input
+          required
           type="text"
           name="title"
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        {title.trim().length > 30 && (
+          <span className="error-msg">
+            * Title cannot be greater than 30 characters
+          </span>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="description">Description</label>
@@ -56,8 +76,13 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        {description.trim().length > 500 && (
+          <span className="error-msg">
+            * Description cannot be greater than 500 characters
+          </span>
+        )}
       </div>
-      <button>Save</button>
+      <button disabled={!isFormValid(title, description)}>Save</button>
     </form>
   );
 };

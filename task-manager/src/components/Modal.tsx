@@ -7,7 +7,6 @@ const Modal = ({
   titleText,
   buttonText,
   showSave,
-  onCancel,
   onClose,
   onComplete,
 }: ModalProps) => {
@@ -17,7 +16,7 @@ const Modal = ({
       {/*Wraps the header, footer and main content */}
       <div className="modal">
         <div className="modal-header">
-          <h4>{titleText}</h4>
+          <h5>{titleText}</h5>
           <p className="close" onClick={() => onClose()}>
             &times;
           </p>
@@ -29,9 +28,6 @@ const Modal = ({
               {buttonText}
             </button>
           )}
-          <button className="btn btn-cancel" onClick={() => onCancel()}>
-            Cancel
-          </button>
         </div>
       </div>
     </div>

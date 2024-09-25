@@ -28,6 +28,5 @@ export type ModalProps = {
   buttonText: string;
   showSave: boolean;
   onComplete?: () => void;
-  onCancel: () => void;
   onClose: () => void;
 };
