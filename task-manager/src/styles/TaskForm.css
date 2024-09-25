@@ -1,6 +1,5 @@
 .task-form {
-  margin-top: 2rem;
-  padding: 0.5rem 1rem 0 1rem;
+  margin-top: 1.5rem;
 }
 
 .form-row {
@@ -18,6 +17,7 @@
 .form-row textarea {
   outline: none;
   width: 25rem;
+  padding: 0.5rem 0;
   border: 2px solid #3f72af;
   border-radius: 0.3rem;
 }

@@ -5,17 +5,16 @@ import TaskList from "./components/TaskList";
 import TaskDetail from "./components/TaskDetail";
 
 import { TaskModel } from "./models/TaskModel";
-import { getMockTaskData, OPERATIONS } from "./utils/utils";
+import { OPERATIONS } from "./utils/utils";
 import { save } from "./utils/storage";
 
 import "./App.css";
 import AddTask from "./components/AddTask";
 
 function App() {
-  const mockData = getMockTaskData();
   const navigate = useNavigate();
 
-  const [tasks, setTasks] = useState<TaskModel[]>(mockData);
+  const [tasks, setTasks] = useState<TaskModel[]>([]);
   const [wasNewTaskClicked, setWasNewTaskClicked] = useState(false);
 
   function toggleTaskCompletion(
@@ -51,8 +50,15 @@ function App() {
   }
 
   function addTask(task: TaskModel) {
-    console.log("Form submission received -- App Component");
-    console.log(task);
+    setTasks((currTasks: TaskModel[]) => {
+      return [
+        {
+          ...currTasks,
+          ...task,
+        },
+      ];
+    });
+
     closeAddTaskModal();
   }
 
