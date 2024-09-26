@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import TaskList from "./components/TaskList";
 import TaskDetail from "./components/TaskDetail";
 
 import { TaskModel } from "./models/TaskModel";
 import { OPERATIONS, STORAGE_KEY } from "./utils/constants";
-import { get, save } from "./utils/storage";
+import { get, remove, save } from "./utils/storage";
 
 import "./App.css";
 import AddTask from "./components/AddTask";
@@ -14,6 +14,12 @@ import EditTask from "./components/EditTask";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Clear the info of the viewed task from storage if present -- clean up
+  if (location?.state?.id) {
+    remove(location.state.id);
+  }
 
   // Load tasks initially from local storage if available
   const [tasks, setTasks] = useState<TaskModel[]>(() => {
@@ -61,9 +67,10 @@ function App() {
   function getTaskDetail(id: string) {
     const task = tasks.filter((task) => task.id === id);
 
-    save(id, { operation: OPERATIONS.VIEW, content: task[0] });
-
-    navigate(`/detail/${id}`);
+    if (task.length === 1) {
+      save(id, { operation: OPERATIONS.VIEW, content: task[0] });
+      navigate(`/detail/${id}`);
+    }
   }
 
   function addTask(task: TaskModel) {
@@ -75,14 +82,24 @@ function App() {
   }
 
   function handleEditTask(id: string) {
-    // TODO: Set state to update the task
     const taskToEdit = tasks.filter((task) => task.id === id);
-    setEditedTask(taskToEdit[0]);
-    setWasEditClicked(true);
+
+    if (taskToEdit.length === 1) {
+      setEditedTask(taskToEdit[0]);
+      setWasEditClicked(true);
+    }
   }
 
-  function updateTask(task: TaskModel) {
-    console.log("Updated task info in App component --", task);
+  function updateTask(updatedTask: TaskModel) {
+    setTasks((currTasks: TaskModel[]) => {
+      return currTasks.map((task) => {
+        if (task.id !== updatedTask.id) return task;
+
+        return updatedTask;
+      });
+    });
+
+    setWasEditClicked(false);
   }
 
   function closeAddTaskModal() {

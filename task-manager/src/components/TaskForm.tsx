@@ -32,32 +32,32 @@ const TaskForm = ({ operation, task, onSubmit }: TaskFormProps) => {
 
     let task: TaskModel = {} as TaskModel;
 
-    if (operation === OPERATIONS.ADD) {
-      task = {
-        id: getUUIDv4(),
-        title,
-        description,
-        completed: false,
-      };
+    if (operation === OPERATIONS.ADD || operation === OPERATIONS.EDIT) {
+      if (operation === OPERATIONS.ADD) {
+        task = {
+          id: getUUIDv4(),
+          title,
+          description,
+          completed: false,
+        };
+      } else {
+        const { id, completed } = editedTask;
+
+        task = {
+          id,
+          title,
+          description,
+          completed,
+        };
+      }
 
       // Invoke the submit handler that handles form data in the parent component
       onSubmit(task);
-    } else if (operation === OPERATIONS.EDIT) {
-      const { id, completed } = editedTask;
 
-      task = {
-        id,
-        title,
-        description,
-        completed,
-      };
-
-      console.log("Updated task info in TaskForm component --", task);
+      // Reset form fields
+      setTitle("");
+      setDescription("");
     }
-
-    // Reset form fields
-    setTitle("");
-    setDescription("");
   }
 
   return (
