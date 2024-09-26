@@ -43,3 +43,11 @@
   transform: scale(0.75);
   margin: 0 0.5rem;
 }
+
+@media screen and (max-width: 480px) {
+  .task label {
+    p {
+      font-size: 1.1rem;
+    }
+  }
+}

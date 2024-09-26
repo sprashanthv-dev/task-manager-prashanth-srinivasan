@@ -3,8 +3,15 @@
 }
 
 .no-tasks {
+  margin: 1rem 0 0 2rem;
   font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
   color: #112d4e;
+}
+
+@media screen and (max-width: 768px) {
+  .no-tasks {
+    font-size: 1rem;
+  }
 }

@@ -11,21 +11,23 @@ const TaskList = ({
   viewHandler,
 }: Tasks) => {
   return (
-    <ul className="task-list">
+    <>
       {tasks.length === 0 && (
         <p className="no-tasks">No Tasks available! Go ahead and add one :)</p>
       )}
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          viewHandler={viewHandler}
-          editHandler={editHandler}
-          completionHandler={completionHandler}
-          deleteHandler={deleteHandler}
-        />
-      ))}
-    </ul>
+      <ul className="task-list">
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            viewHandler={viewHandler}
+            editHandler={editHandler}
+            completionHandler={completionHandler}
+            deleteHandler={deleteHandler}
+          />
+        ))}
+      </ul>
+    </>
   );
 };
 

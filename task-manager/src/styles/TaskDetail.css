@@ -3,9 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   margin: 1rem 0 0 2rem;
-  padding: 1rem 0;
 }
 
 .task-detail-container {
@@ -44,6 +42,7 @@
 }
 .view-task-error {
   font-size: 1.5rem;
+  margin-left: 2rem;
   margin-bottom: 0.25rem;
   font-weight: 400;
   text-align: center;
@@ -53,7 +52,9 @@
 .back-button-container {
   display: flex;
   justify-content: right;
+  margin-top: 0.75rem;
 }
+
 .back-button-container button {
   outline: none;
   border: none;
@@ -63,4 +64,33 @@
   background-color: #3f72af;
   color: #fff;
   cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .task-detail-container {
+    .title {
+      font-size: 1.25rem;
+    }
+
+    .description p {
+      text-align: justify;
+      font-size: 1rem;
+    }
+
+    .status label,
+    .status span {
+      font-size: 1rem;
+    }
+  }
+
+  .back-button-container {
+    justify-content: center;
+  }
+  .back-button-container button {
+    margin-top: 0.75rem;
+  }
+
+  .view-task-error {
+    font-size: 1rem;
+  }
 }
