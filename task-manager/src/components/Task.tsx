@@ -1,4 +1,4 @@
-import { EachTask } from "../types/common.ts";
+import { EachTask } from "../types/common";
 
 import "../styles/Task.css";
 
