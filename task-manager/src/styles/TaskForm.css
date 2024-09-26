@@ -42,3 +42,17 @@
   font-size: 0.85rem;
   color: #d91656;
 }
+
+@media screen and (max-width: 480px) {
+  .task-form {
+    margin-top: 1rem;
+  }
+  .form-row input,
+  .form-row textarea {
+    width: 18rem;
+  }
+  .task-form button {
+    display: block;
+    margin: 0 auto;
+  }
+}
