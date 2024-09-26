@@ -38,3 +38,18 @@ A Task management application that supports adding new tasks, edit existing task
 - Ability to toggle a task's completion status using the checkbox located to the left side of the task title.
   
 - Delete a task by clicking on the trash can icon on the right side of the task.
+
+#### 6. Extras
+- The operations performed on a task are persisted across browser refreshes and page navigations using local storage.
+- All of the UI elements are responsive and works well across all screen sizes from mobile to TV.
+- The modal that pops up on adding and editing a task is designed from scratch using plain `HTML` and `CSS` without the use of any component libraries. It is closed using the close icon and can be reused across the entire application for varied use cases since it accepts any component as its template.
+- The form component inside the modal supports validation -- Does not accept titles greater than 30 characters and descriptions greater than 500 characters.
+
+#### 7. Design Considerations
+- Modal was used for adding and editing tasks rather than creating new pages for these actions. Modals help the user to retain the context of their current page and prevents unnecessary redirections especially considering that `Add` and `Edit` might be frequently performed operations.
+- Local storage was used for easier management of task data across pages. Together with modals, it prevented the hassles of passing state information across various components of the application, enabling predictable data flow.
+
+#### 8. Future Enhancements and thoughts
+- Local storage works fine for small amounts of data. However, it is not a good fit for storing sensitive information and large data sizes. A centralized state management such as `Redux` or `Zustand` is better suited for maintaining application state across multiple components in larger applications.
+- Though modals help to retain user context preventing too many navigations, too many of them can impact user experience and accessibility. Depending on the future requirements, modals can be dropped and individual pages is desirable for additional features.
+- Currently, the `App` Component maintains all of the state and also the modal interactions. This can be refactored by creating a `TaskManager` component that performs all functionalities related to tasks enabling the `App` component to be leaner as the application grows.
