@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "../styles/TaskDetail.css";
 
-import { get } from "../utils/storage";
-import { TASK_STATUS } from "../utils/utils";
+import { get, remove } from "../utils/storage";
+import { TASK_STATUS } from "../utils/constants";
 import { TaskModel } from "../models/TaskModel";
 
 const TaskDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [taskDetail] = useState<TaskModel | null>(() => {
     const task = get(id as string);
@@ -17,6 +18,13 @@ const TaskDetail = () => {
 
     return task.content as TaskModel;
   });
+
+  const goToHomePage = () => {
+    // Before navigating back remove the task from local storage -- clean up
+    remove(id as string);
+
+    navigate("/", { state: { id } });
+  };
 
   return (
     <>
@@ -44,9 +52,9 @@ const TaskDetail = () => {
         </p>
       )}
       <div className="back-button-container">
-        <Link to={"/"}>
-          <button className="back-button">Go Back</button>
-        </Link>
+        <button className="back-button" onClick={() => goToHomePage()}>
+          Go Back
+        </button>
       </div>
     </>
   );

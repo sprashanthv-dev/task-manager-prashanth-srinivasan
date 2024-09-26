@@ -4,18 +4,19 @@ import Modal from "./Modal";
 import TaskForm from "./TaskForm";
 
 import { OPERATIONS } from "../utils/constants";
-import { AddTaskProps } from "../types/common";
+import { EditTaskProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
 
-const AddTask = ({ close, onSubmit }: AddTaskProps) => {
+const EditTask = ({ task, close, onSubmit }: EditTaskProps) => {
   function handleFormSubmit(task: TaskModel) {
     onSubmit(task);
   }
 
   return createPortal(
-    <Modal titleText="Add Task" showSave={false} onClose={() => close()}>
+    <Modal titleText="Edit task" showSave={false} onClose={() => close()}>
       <TaskForm
-        operation={OPERATIONS.ADD}
+        task={task}
+        operation={OPERATIONS.EDIT}
         onSubmit={(task) => handleFormSubmit(task)}
       />
     </Modal>,
@@ -23,4 +24,4 @@ const AddTask = ({ close, onSubmit }: AddTaskProps) => {
   );
 };
 
-export default AddTask;
+export default EditTask;

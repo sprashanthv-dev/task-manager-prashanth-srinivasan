@@ -9,6 +9,7 @@ type toggleTaskHandler = {
 
 type operationsHandler = {
   viewHandler: (id: string) => void;
+  editHandler: (id: string) => void;
   deleteHandler: (id: string) => void;
 };
 
@@ -25,8 +26,23 @@ export type EachTask = {
 export type ModalProps = {
   children: React.ReactNode;
   titleText: string;
-  buttonText: string;
+  buttonText?: string;
   showSave: boolean;
   onComplete?: () => void;
   onClose: () => void;
+};
+
+export type AddTaskProps = {
+  close: () => void;
+  onSubmit: (task: TaskModel) => void;
+};
+
+export type EditTaskProps = {
+  task: TaskModel;
+} & AddTaskProps;
+
+export type TaskFormProps = {
+  operation: string;
+  task?: TaskModel;
+  onSubmit: (task: TaskModel) => void;
 };

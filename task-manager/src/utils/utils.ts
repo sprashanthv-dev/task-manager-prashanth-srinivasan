@@ -1,45 +1,20 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { TaskModel } from "../models/TaskModel";
-
-export enum OPERATIONS {
-  VIEW = "View",
-  ADD = "Add",
-  EDIT = "Edit",
-  STORE = "Store",
-}
-
-export const STORAGE_KEY = "TASKS";
-
-export enum TASK_STATUS {
-  COMPLETED = "Completed",
-  INCOMPLETE = "Incomplete",
-}
-
 export const getUUIDv4 = () => {
   return uuidv4();
 };
 
-export const getMockTaskData = (): TaskModel[] => {
-  return [
-    {
-      id: getUUIDv4(),
-      title: "Title 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel dui at quam venenatis fermentum. Duis consectetur viverra orci vitae facilisis. Vestibulum fermentum quis nisl in laoreet. Maecenas condimentum mi in leo varius varius. Vestibulum ultricies mi vel mauris tempus maximus. Donec consectetur pretium augue, nec vulputate justo imperdiet hendrerit. Sed nec gravida diam. Quisque volutpat augue vel bibendum elementum. Donec eget ante aliquam, feugiat justo ut, euismod libero.",
-      completed: false,
-    },
-    {
-      id: getUUIDv4(),
-      title: "Title 2",
-      completed: false,
-    },
-    {
-      id: getUUIDv4(),
-      title: "Title 3",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel dui at quam venenatis fermentum. Duis consectetur viverra orci vitae facilisis. Vestibulum fermentum quis nisl in laoreet. Maecenas condimentum mi in leo varius varius. Vestibulum ultricies mi vel mauris tempus maximus. Donec consectetur pretium augue, nec vulputate justo imperdiet hendrerit. Sed nec gravida diam. Quisque volutpat augue vel bibendum elementum. Donec eget ante aliquam, feugiat justo ut, euismod libero.",
-      completed: false,
-    },
-  ];
+export const isTaskFormValid = (title: string, description: string) => {
+  const formattedTitle = title.trim();
+  const formattedDescription = description.trim();
+
+  const isDescriptionPresent = formattedDescription.length > 0;
+
+  if (formattedTitle.length === 0 || formattedTitle.length > 30) return false;
+
+  return isDescriptionPresent
+    ? formattedDescription.length < 500
+      ? true
+      : false
+    : true;
 };

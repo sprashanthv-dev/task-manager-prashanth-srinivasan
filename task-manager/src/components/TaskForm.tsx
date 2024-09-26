@@ -1,50 +1,63 @@
 import { useState } from "react";
 
+import { TaskFormProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
-import { getUUIDv4 } from "../utils/utils";
+
+import { OPERATIONS } from "../utils/constants";
+import { getUUIDv4, isTaskFormValid } from "../utils/utils";
 
 import "../styles/TaskForm.css";
 
-type TaskFormProps = {
-  onSubmit: (task: TaskModel) => void;
-};
-
-const isFormValid = (title: string, description: string) => {
-  const formattedTitle = title.trim();
-  const formattedDescription = description.trim();
-
-  const isDescriptionPresent = formattedDescription.length > 0;
-
-  if (formattedTitle.length === 0 || formattedTitle.length > 30) return false;
-
-  return isDescriptionPresent
-    ? formattedDescription.length < 500
-      ? true
-      : false
-    : true;
-};
-
 // The onSubmit prop is passed from the parent component
-const TaskForm = ({ onSubmit }: TaskFormProps) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const TaskForm = ({ operation, task, onSubmit }: TaskFormProps) => {
+  const [editedTask] = useState<TaskModel>(() => {
+    if (!task) return {} as TaskModel;
+
+    return {
+      id: task.id,
+      completed: task.completed,
+      title: task.title,
+      description: task.description,
+    };
+  });
+
+  const [title, setTitle] = useState(editedTask.title ? editedTask.title : "");
+
+  const [description, setDescription] = useState(
+    editedTask.description ? editedTask.description : "",
+  );
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const task: TaskModel = {
-      id: getUUIDv4(),
-      title,
-      description,
-      completed: false,
-    };
+    let task: TaskModel = {} as TaskModel;
 
-    // Invoke the submit handler that handles form data in the parent component
-    onSubmit(task);
+    if (operation === OPERATIONS.ADD || operation === OPERATIONS.EDIT) {
+      if (operation === OPERATIONS.ADD) {
+        task = {
+          id: getUUIDv4(),
+          title,
+          description,
+          completed: false,
+        };
+      } else {
+        const { id, completed } = editedTask;
 
-    // Reset form fields
-    setTitle("");
-    setDescription("");
+        task = {
+          id,
+          title,
+          description,
+          completed,
+        };
+      }
+
+      // Invoke the submit handler that handles form data in the parent component
+      onSubmit(task);
+
+      // Reset form fields
+      setTitle("");
+      setDescription("");
+    }
   }
 
   return (
@@ -82,7 +95,7 @@ const TaskForm = ({ onSubmit }: TaskFormProps) => {
           </span>
         )}
       </div>
-      <button disabled={!isFormValid(title, description)}>Save</button>
+      <button disabled={!isTaskFormValid(title, description)}>Save</button>
     </form>
   );
 };
