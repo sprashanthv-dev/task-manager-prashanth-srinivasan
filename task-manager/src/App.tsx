@@ -10,6 +10,7 @@ import { get, save } from "./utils/storage";
 
 import "./App.css";
 import AddTask from "./components/AddTask";
+import EditTask from "./components/EditTask";
 
 function App() {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ function App() {
     return storedTasks.content as TaskModel[];
   });
 
+  const [editedTask, setEditedTask] = useState<TaskModel>({} as TaskModel);
+
   const [wasNewTaskClicked, setWasNewTaskClicked] = useState(false);
+  const [wasEditClicked, setWasEditClicked] = useState(false);
 
   // Run the effect whenever a task is added, edited,
   // deleted or toggled completion status
@@ -72,7 +76,13 @@ function App() {
 
   function handleEditTask(id: string) {
     // TODO: Set state to update the task
-    console.log("Task about to be edited is :" + id);
+    const taskToEdit = tasks.filter((task) => task.id === id);
+    setEditedTask(taskToEdit[0]);
+    setWasEditClicked(true);
+  }
+
+  function updateTask(task: TaskModel) {
+    console.log("Updated task info in App component --", task);
   }
 
   function closeAddTaskModal() {
@@ -84,6 +94,13 @@ function App() {
       <h2 className="header">Task Manager</h2>
       {wasNewTaskClicked && (
         <AddTask close={closeAddTaskModal} onSubmit={addTask} />
+      )}
+      {wasEditClicked && (
+        <EditTask
+          task={editedTask}
+          close={() => setWasEditClicked(false)}
+          onSubmit={updateTask}
+        />
       )}
       <Routes>
         <Route path="/detail/:id" element={<TaskDetail />} />

@@ -26,7 +26,7 @@ export type EachTask = {
 export type ModalProps = {
   children: React.ReactNode;
   titleText: string;
-  buttonText: string;
+  buttonText?: string;
   showSave: boolean;
   onComplete?: () => void;
   onClose: () => void;
@@ -37,6 +37,12 @@ export type AddTaskProps = {
   onSubmit: (task: TaskModel) => void;
 };
 
+export type EditTaskProps = {
+  task: TaskModel;
+} & AddTaskProps;
+
 export type TaskFormProps = {
+  operation: string;
+  task?: TaskModel;
   onSubmit: (task: TaskModel) => void;
 };

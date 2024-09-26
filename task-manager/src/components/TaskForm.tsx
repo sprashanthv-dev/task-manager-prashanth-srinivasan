@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { TaskFormProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
-import { getUUIDv4 } from "../utils/utils";
+import { getUUIDv4, OPERATIONS } from "../utils/utils";
 
 import "../styles/TaskForm.css";
 
@@ -22,22 +22,51 @@ const isFormValid = (title: string, description: string) => {
 };
 
 // The onSubmit prop is passed from the parent component
-const TaskForm = ({ onSubmit }: TaskFormProps) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+const TaskForm = ({ operation, task, onSubmit }: TaskFormProps) => {
+  const [editedTask] = useState<TaskModel>(() => {
+    if (!task) return {} as TaskModel;
+
+    return {
+      id: task.id,
+      completed: task.completed,
+      title: task.title,
+      description: task.description,
+    };
+  });
+
+  const [title, setTitle] = useState(editedTask.title ? editedTask.title : "");
+
+  const [description, setDescription] = useState(
+    editedTask.description ? editedTask.description : "",
+  );
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const task: TaskModel = {
-      id: getUUIDv4(),
-      title,
-      description,
-      completed: false,
-    };
+    let task: TaskModel = {} as TaskModel;
 
-    // Invoke the submit handler that handles form data in the parent component
-    onSubmit(task);
+    if (operation === OPERATIONS.ADD) {
+      task = {
+        id: getUUIDv4(),
+        title,
+        description,
+        completed: false,
+      };
+
+      // Invoke the submit handler that handles form data in the parent component
+      onSubmit(task);
+    } else if (operation === OPERATIONS.EDIT) {
+      const { id, completed } = editedTask;
+
+      task = {
+        id,
+        title,
+        description,
+        completed,
+      };
+
+      console.log("Updated task info in TaskForm component --", task);
+    }
 
     // Reset form fields
     setTitle("");
