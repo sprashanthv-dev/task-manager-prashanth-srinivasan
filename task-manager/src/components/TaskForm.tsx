@@ -2,24 +2,11 @@ import { useState } from "react";
 
 import { TaskFormProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
-import { getUUIDv4, OPERATIONS } from "../utils/utils";
+
+import { OPERATIONS } from "../utils/constants";
+import { getUUIDv4, isTaskFormValid } from "../utils/utils";
 
 import "../styles/TaskForm.css";
-
-const isFormValid = (title: string, description: string) => {
-  const formattedTitle = title.trim();
-  const formattedDescription = description.trim();
-
-  const isDescriptionPresent = formattedDescription.length > 0;
-
-  if (formattedTitle.length === 0 || formattedTitle.length > 30) return false;
-
-  return isDescriptionPresent
-    ? formattedDescription.length < 500
-      ? true
-      : false
-    : true;
-};
 
 // The onSubmit prop is passed from the parent component
 const TaskForm = ({ operation, task, onSubmit }: TaskFormProps) => {
@@ -108,7 +95,7 @@ const TaskForm = ({ operation, task, onSubmit }: TaskFormProps) => {
           </span>
         )}
       </div>
-      <button disabled={!isFormValid(title, description)}>Save</button>
+      <button disabled={!isTaskFormValid(title, description)}>Save</button>
     </form>
   );
 };

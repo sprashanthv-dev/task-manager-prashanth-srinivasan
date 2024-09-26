@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import Modal from "./Modal";
 import TaskForm from "./TaskForm";
 
-import { OPERATIONS } from "../utils/utils";
+import { OPERATIONS } from "../utils/constants";
 import { AddTaskProps } from "../types/common";
 import { TaskModel } from "../models/TaskModel";
 

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import "../styles/TaskDetail.css";
 
 import { get } from "../utils/storage";
-import { TASK_STATUS } from "../utils/utils";
+import { TASK_STATUS } from "../utils/constants";
 import { TaskModel } from "../models/TaskModel";
 
 const TaskDetail = () => {

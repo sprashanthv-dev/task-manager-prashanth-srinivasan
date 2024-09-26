@@ -5,7 +5,7 @@ import TaskList from "./components/TaskList";
 import TaskDetail from "./components/TaskDetail";
 
 import { TaskModel } from "./models/TaskModel";
-import { OPERATIONS, STORAGE_KEY } from "./utils/utils";
+import { OPERATIONS, STORAGE_KEY } from "./utils/constants";
 import { get, save } from "./utils/storage";
 
 import "./App.css";
