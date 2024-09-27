@@ -4,7 +4,7 @@ export const getUUIDv4 = () => {
   return uuidv4();
 };
 
-export const isTaskFormValid = (title: string, description: string) => {
+export const isTaskFormValid = (title: string, description: string = "") => {
   const formattedTitle = title.trim();
   const formattedDescription = description.trim();
 
@@ -13,7 +13,7 @@ export const isTaskFormValid = (title: string, description: string) => {
   if (formattedTitle.length === 0 || formattedTitle.length > 30) return false;
 
   return isDescriptionPresent
-    ? formattedDescription.length < 500
+    ? formattedDescription.length <= 500
       ? true
       : false
     : true;
