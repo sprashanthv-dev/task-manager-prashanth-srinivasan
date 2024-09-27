@@ -11,7 +11,7 @@ export const get = (key: string): StorageModel | null => {
     return JSON.parse(item);
   }
 
-  return item;
+  return null;
 };
 
 export const remove = (key: string) => {
